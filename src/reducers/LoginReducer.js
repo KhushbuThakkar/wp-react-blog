@@ -7,19 +7,6 @@ export function login(email, password) {
   console.log('login called');
   return dispatch => {
     dispatch(setLoginPending(true));
-   // dispatch(setLoginSuccess(false));
-    //dispatch(setLoginError(null));
-
-    // callLoginApi(email, password, error => {
-    //   console.log('callLoginApi called');
-    //   dispatch(setLoginPending(false));
-    //   if (!error) {
-    //     dispatch(setLoginSuccess(true,email,password,profile));
-    //   } else {
-    //     dispatch(setLoginError(error));
-    //   }
-    // });
-
 
      var wp = new WPAPI({
         endpoint: Globals.WP_API_URL,
@@ -80,35 +67,6 @@ export function setProfileData(profile) {
     profile:profile
   }
 }
-
-
-function callLoginApi(email, password, callback) {
-  
-    console.log('email + password',email,password)
-    var wp = new WPAPI({
-        endpoint: 'http://wpreact.dev/wp-json/',
-        username: email,
-        password: password
-    });
-
-    wp.users().me().then(function( response ) {
-      console.log(response,'response from callLoginApi')
-       if (response.id) {
-            //dispatch(setProfileData(response));
-            console.log('after setting profile');
-            return callback(null);
-        } else {
-            var error = new Error(response.statusText || response.status)
-            console.log(error,'error from here')
-            error.response = response
-            return callback(new Error('Invalid email and password'));
-        }
-    }).catch(function( err ) {
-        return callback(new Error('Invalid email and password'));
-    });
-   
-}
-
 
 export function logout() {
   localStorage.removeItem('user_email');

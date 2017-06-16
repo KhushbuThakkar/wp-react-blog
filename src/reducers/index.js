@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import login from './Login'
 import signup from './Signup'
+import posts from './Posts'
 
 export default combineReducers({
-  login,signup
+  login,signup,posts
 })

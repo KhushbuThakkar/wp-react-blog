@@ -5,7 +5,8 @@ import { Link } from 'react-router';
 class RecentPosts extends React.Component {
 
     render() {
-    	let RecentPosts = DataStore.getRecentPosts();
+        //let RecentPosts = DataStore.getRecentPosts();
+    	let RecentPosts = (this.props.posts)?this.props.posts:[];
         return (
             <div>		
                 <aside  className="widget widget_recent_entries">	
@@ -13,7 +14,7 @@ class RecentPosts extends React.Component {
                 	<ul>
  						{RecentPosts.map((post) => {                    		
                     		return (
-                    			<li>
+                    			<li key={post.id}>
                                     <Link  to={`/blogs/${post.slug}`} style={{marginRight: '10px'}}>{post.title.rendered}
                                     </Link>
                                 </li>

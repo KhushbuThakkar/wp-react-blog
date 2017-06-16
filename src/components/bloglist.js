@@ -2,12 +2,21 @@ import React from 'react';
 import DataStore from './../stores/DataStore.js';
 import { Link } from 'react-router';
 import RecentPosts from './RecentPosts';
+import { connect } from 'react-redux';
+import * as postsActions from '../reducers/Posts';
+import { bindActionCreators } from 'redux'
 
 class Bloglist extends React.Component {
-    render() {
-        let allPosts = DataStore.getAllPosts();
 
-        console.log(allPosts,'allPosts');
+     constructor(props) {
+        super(props);
+        this.props.postsActions.getPosts();
+    }
+
+    render() {
+        //let allPosts = DataStore.getAllPosts();
+        let allPosts = (this.props.posts)?this.props.posts:[];
+        //console.log(this.props.posts,'allPosts');
         return (
     <div className='hfeed site'>
         <div className="page-wrap">
@@ -69,7 +78,7 @@ class Bloglist extends React.Component {
     </div>
 
     <div className='col-md-3 widget-area'>
-        <RecentPosts></RecentPosts>
+        <RecentPosts posts={this.props.posts}></RecentPosts>
     </div>
 
                 </div>
@@ -80,4 +89,17 @@ class Bloglist extends React.Component {
         );
     }
 }
-export default Bloglist;
+const mapStateToProps = (state) => {
+    console.log(state,'state');
+  return {
+    posts: state.posts.allPosts
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //postsActions: () => dispatch(getPosts())
+    postsActions: bindActionCreators(postsActions, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Bloglist);

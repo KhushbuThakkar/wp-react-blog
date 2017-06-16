@@ -3,13 +3,26 @@ import DataStore 	from './../stores/DataStore.js';
 import { Link } from 'react-router';
 import RecentPosts from './RecentPosts';
 import Slider from './Slider';
+import { connect } from 'react-redux';
+import * as postsActions from '../reducers/Posts';
+import { bindActionCreators } from 'redux'
 
 class Post extends React.Component {
 
+     constructor(props) {
+        super(props);
+        this.props.postsActions.getPosts();
+    }
+
     render() {
 		const post_slug  = this.props.params.post
-        console.log(this.props.params,'spec');
-        let post = DataStore.getPostBySlug(post_slug);
+        
+        //let post = DataStore.getPostBySlug(post_slug);
+        let posts = (this.props.posts)?this.props.posts:[];
+        let post=posts[Object.keys(posts).find((post, i) => {
+            return posts[post].slug === post_slug;
+        })] || {};
+        console.log(post,'post');
 	    let date=new Date(post.date_gmt).toGMTString();
 
         return (
@@ -33,7 +46,7 @@ class Post extends React.Component {
                         </div>
                         <header className="entry-header">
                                 <h2 className="title-post">
-                                    {post.title.rendered}
+                                    { (post.title)?post.title.rendered:''}
                                 </h2>
                             
                                 <div className="meta-post">
@@ -56,7 +69,7 @@ class Post extends React.Component {
                         </header>
 
                         <div className="entry-post">
-                            <p dangerouslySetInnerHTML={{__html: post.content.rendered}}>
+                            <p dangerouslySetInnerHTML={{__html: (post.content)?post.content.rendered:''}}>
                             </p>
         
                         </div>
@@ -66,7 +79,7 @@ class Post extends React.Component {
     </div>
 
 	<div className='col-md-3 widget-area'>
-		<RecentPosts></RecentPosts>
+		<RecentPosts posts={posts}></RecentPosts>
 	</div>
                 </div>
             </div>
@@ -77,4 +90,17 @@ class Post extends React.Component {
     }
 
 }
-export default Post;
+const mapStateToProps = (state) => {
+    console.log(state,'state');
+  return {
+    posts: state.posts.allPosts
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //postsActions: () => dispatch(getPosts())
+    postsActions: bindActionCreators(postsActions, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -4,7 +4,7 @@ import _        from 'lodash';
 
 import { connect } from 'react-redux';
 import DataStore from './../stores/DataStore.js';
-import * as authActions  from '../reducers/LoginReducer';
+import * as authActions  from '../reducers/Login';
 import { bindActionCreators } from 'redux'
 
 class NavHeader extends React.Component {

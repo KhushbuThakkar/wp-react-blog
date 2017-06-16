@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../reducers/LoginReducer';
+import { login } from '../../reducers/Login';
 import './LoginForm.css';
 
 

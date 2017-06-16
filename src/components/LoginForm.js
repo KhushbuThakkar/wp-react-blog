@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as authActions  from '../reducers/LoginReducer';
+import * as authActions  from '../reducers/Login';
 //import './LoginForm.css';
 import { bindActionCreators } from 'redux';
 

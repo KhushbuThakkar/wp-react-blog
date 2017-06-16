@@ -1,4 +1,4 @@
-import {setLoginPending ,setLoginSuccess ,setLoginError} from './LoginReducer';
+import {setLoginPending ,setLoginSuccess ,setLoginError} from './Login';
 import {browserHistory} from 'react-router';
 var WPAPI = require( 'wpapi' );
 

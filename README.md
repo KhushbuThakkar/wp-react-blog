@@ -1,32 +1,27 @@
-# Wordpress REST API + React JS
+# React JS  + WP Rest API 
 
-This boilerplate will help you use React JS with Wordpress REST API.
+The startup kit to use React JS with Wordpress REST API.
 Clone the project and install node packages:
 
 ```
 npm i
 ```
 
-To run the project on localhost:8080:
+Run the project with
 ```
 webpack-dev-server
 ```
+This will start app on localhost:8080:
 
-You need to have webpack and webpack-dev-server installed globally:
-* [`webpack`](http://webpack.github.io/docs/)
+Install webpack and webpack-dev-server globally:
 ```
 npm install -g webpack
-```
-
-* [`webpack-dev-server`](http://webpack.github.io/docs/webpack-dev-server.html)
-```
 npm install -g webpack-dev-server
 ```
 
-Don't forget to update the Worpress installation url in DataActions.js. It's located in src/actions/DataActions.js line 7
+Change the URL in Globals.js file with your own wordpress URL.for example,if domain is mywp.dev
 ```
-class DataActions {
-	constructor() {
-		const appUrl = 'http://andreypokrovskiy.com/projects/wp-api'; // Wordpress installation url
-	}
+this.WP_URL  = 'http://mywp.dev/';
+this.WP_API_URL = 'http://mywp.dev/wp-json/';
+		
 ```

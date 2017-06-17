@@ -18,7 +18,7 @@ class Page extends React.Component {
         })] || {};
         return (
             <div className='main-container'>
-                <h1>{(page.title)?page.title.rendered:''}</h1>
+                <h1 className='text-center'>{(page.title)?page.title.rendered:''}</h1>
                 <div dangerouslySetInnerHTML={{__html: (page.content)?page.content.rendered:''}}></div>
             </div>
         );

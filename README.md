@@ -1,32 +1,50 @@
-# Wordpress REST API + React JS
+# React JS  + WP Rest API 
+> The startup kit to use React JS with Wordpress REST API.
 
-This boilerplate will help you use React JS with Wordpress REST API.
+[![REACT Version][react-image]][react-url]
+[![REDUX Version][redux-image]][redux-url]
+[![WPAPI Version][wpapi-image]][wpapi-url]
+
+
+It will provide dynamic menu,any new page created in wordpress will be added in site header.
+
+
+## Features
+
+* Login
+* Signup
+* Dynamic Menu
+* BlogListing and Single Blog
+
 Clone the project and install node packages:
 
 ```
 npm i
 ```
 
-To run the project on localhost:8080:
+Run the project with
 ```
 webpack-dev-server
 ```
+This will start app on localhost:8080:
 
-You need to have webpack and webpack-dev-server installed globally:
-* [`webpack`](http://webpack.github.io/docs/)
+Install webpack and webpack-dev-server globally:
 ```
 npm install -g webpack
-```
-
-* [`webpack-dev-server`](http://webpack.github.io/docs/webpack-dev-server.html)
-```
 npm install -g webpack-dev-server
 ```
 
-Don't forget to update the Worpress installation url in DataActions.js. It's located in src/actions/DataActions.js line 7
+Change the URL in Globals.js file with your own wordpress URL.for example,if domain is mywp.dev
 ```
-class DataActions {
-	constructor() {
-		const appUrl = 'http://andreypokrovskiy.com/projects/wp-api'; // Wordpress installation url
-	}
+this.WP_URL  = 'http://mywp.dev/';
+this.WP_API_URL = 'http://mywp.dev/wp-json/';
+		
 ```
+
+## Contributing
+
+1. Fork it (<https://github.com/yourname/yourproject/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request

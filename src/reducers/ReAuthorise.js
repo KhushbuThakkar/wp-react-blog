@@ -3,7 +3,6 @@ import {browserHistory} from 'react-router';
 var WPAPI = require( 'wpapi' );
 
 export function reAuthorise(email, password) {
-  console.log('reAuthorise called');
   return dispatch => {
     dispatch(setLoginPending(true));
      var wp = new WPAPI({
@@ -13,7 +12,6 @@ export function reAuthorise(email, password) {
     });
 
     wp.users().me().then(function( response ) {
-        console.log(response,'profile form reAuthorise')
          dispatch(setLoginPending(false));
        if (response.id) {
               dispatch(setLoginSuccess(true,email,password,response));

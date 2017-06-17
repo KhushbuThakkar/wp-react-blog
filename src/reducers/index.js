@@ -5,5 +5,8 @@ import posts from './Posts'
 import pages from './Pages'
 
 export default combineReducers({
-  login,signup,posts,pages
+  login,
+  signup,
+  posts,
+  pages
 })

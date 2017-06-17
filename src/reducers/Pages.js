@@ -15,14 +15,12 @@ export function getPagesForRoutes() {
     });   
 }
 export function getPagesXXX() {
-  console.log('get pages called');
      var wp = new WPAPI({
         endpoint: Globals.WP_API_URL,
     });
 
     wp.pages().then(function( response ) {
        if (response) {
-            console.log(response,'response returned')
             return response;
         } else {
             return 'No pages found.Create one from '+Globals.WP_URL;
@@ -42,7 +40,6 @@ export function getPages() {
     });
 
     wp.pages().then(function( response ) {
-       console.log(response,'pages form getPages')
        dispatch(setPagesPending(false));
        if (response) {
               dispatch(setPagesSuccess(response));
@@ -93,7 +90,6 @@ export default function reducer(state = {
       });
 
     case types.SET_PAGES_SUCCESS:
-        console.log('SET_PAGES_SUCCESS called');
       return Object.assign({}, state, {
         isPagesSuccess: action.isPagesSuccess,
         allPages:action.pages,

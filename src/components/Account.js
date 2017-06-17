@@ -14,7 +14,6 @@ class Account extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-  console.log(state,'state profile')
   return {
     profile: state.login.profile
   };

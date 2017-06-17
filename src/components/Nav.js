@@ -18,39 +18,19 @@ class NavHeader extends React.Component {
     logout() {
         this.props.authActions.logout();
     }
-//     componentDidMount() {
-//         //console.log(localStorage.getItem('user_email'),'user_email');
-// //        console.log(this.props.user,'this.props.user')
-//         if(this.props.user && this.props.user != 'undefined'){
-//             this.setState({
-//                 user_email:this.props.user.email
-//             });
-//         }
-//         //let user_email = localStorage.getItem('user_email');
-//     }
+
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps',nextProps)
 
         if((this.props.user.email) !== (nextProps.user.email)) 
         {
-             console.log('rendering again')
                this.render();
         }
     }
     render() {
         let allPages = (this.props.pages)?this.props.pages:[];
         allPages = _.sortBy(allPages, [function(page) { return page.menu_order; }]);
-        // var WPAPI = require( 'wpapi' );
-        // var wp = new WPAPI({ endpoint: 'http://wpreact.dev/wp-json/' });
-
-        // wp.posts().then(function( data ) {
-        //     // do something with the returned posts 
-        //     console.log(data,'data gathered');
-        // }).catch(function( err ) {
-        //     // handle error 
-        // });
         let user_email='';
-        console.log(this.props.user,'this.props.user')
+
         if(this.props.user.email && this.props.user.email != 'undefined')
             user_email = this.props.user.email
         else
@@ -58,7 +38,7 @@ class NavHeader extends React.Component {
 
         return (
 
-            <header>
+            <header className='navbar-wrapper'>
             
             <nav className="navbar navbar-inverse bg-inverse navbar-static-top">
             
@@ -75,15 +55,15 @@ class NavHeader extends React.Component {
                             </li>
                         )
                     })}
-                            <li>
+                            {/*<li>
                                 <Link className="navbar-link" to='/blogs'>Blog</Link>
-                            </li>  
+                            </li>  */}
                             {(user_email!=null && user_email!='undefined')?
                             <li>
                                 <Link className="navbar-link" to='/profile'>{user_email}</Link>
                             </li> :''}
                             <li>
-                            {console.log(user_email,'user_email')}
+                            
                             {(user_email!=null && user_email!='undefined')
                                 ?<a onClick={ this.logout.bind(this) } title="Logout"><i className="fa fa-power-off" aria-hidden="true"></i><span className="text">Logout</span></a>
                                 :<Link className="navbar-link" to='/login'>Login</Link>
@@ -99,7 +79,6 @@ class NavHeader extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state,'user from nav')
   return {
     user: state.login.userData,
     pages: state.pages.allPages

@@ -4,7 +4,6 @@ import {browserHistory} from 'react-router';
 var WPAPI = require( 'wpapi' );
 
 export function login(email, password) {
-  console.log('login called');
   return dispatch => {
     dispatch(setLoginPending(true));
 
@@ -38,8 +37,6 @@ export function setLoginPending(isLoginPending) {
 }
 
 export function setLoginSuccess(isLoginSuccess,email,password,profile) {
-  console.log(isLoginSuccess,'isLoginSuccess')
-  console.log(email,'userEmail from setLoginSuccess');
   localStorage.setItem('user_email', email);
   localStorage.setItem('user_pass', password);
 
@@ -61,7 +58,7 @@ export function setLoginError(loginError) {
 }
 
 export function setProfileData(profile) {
-  console.log('from setProfileData');
+  
   return {
     type: types.SET_PROFILE_DATA,
     profile:profile
@@ -71,7 +68,7 @@ export function setProfileData(profile) {
 export function logout() {
   localStorage.removeItem('user_email');
   localStorage.removeItem('user_pass');  
-  console.log('removed data from cache')
+  
   browserHistory.push("/login");
   return {
     type: types.SET_LOGOUT_SUCCESS
@@ -101,7 +98,8 @@ export default function reducer(state = {
 
     case types.SET_LOGIN_ERROR:
       return Object.assign({}, state, {
-        loginError: action.loginError
+        loginError: action.loginError,
+        isLoginPending: false
       });    
 
     case types.SET_LOGOUT_SUCCESS:
@@ -111,7 +109,6 @@ export default function reducer(state = {
         userData:{}
       });
     case types.SET_PROFILE_DATA:
-    console.log('profile from reducer',action.profile);
       return Object.assign({}, state, {
         profile:action.profile
       });

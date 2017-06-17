@@ -11,7 +11,6 @@ export function getPosts() {
     });
 
     wp.posts().then(function( response ) {
-       console.log(response,'posts form getPosts')
        dispatch(setPostsPending(false));
        if (response) {
               dispatch(setPostsSuccess(response));
@@ -61,7 +60,6 @@ export default function reducer(state = {
       });
 
     case types.SET_POSTS_SUCCESS:
-        console.log('SET_POSTS_SUCCESS called');
       return Object.assign({}, state, {
         isPostsSuccess: action.isPostsSuccess,
         allPosts:action.posts,

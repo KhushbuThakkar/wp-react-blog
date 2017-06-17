@@ -12,15 +12,13 @@ class Login extends React.Component {
     }
 
     onLoginClick() {
-        console.log('onLoginClick called');
         this.setState({
           signupVisible: false,
         })
     }
     render() {
-        console.log(this.state.signupVisible,'signupVisible');
         return (
-            <div className='col-md-12 container'>   
+            <div className='col-md-12 container main-container'>   
 
 			
 	            <div className='col-md-12 text-center card'>   

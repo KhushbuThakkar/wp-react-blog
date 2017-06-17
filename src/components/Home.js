@@ -16,7 +16,6 @@ class Home extends React.Component {
 
 }
 const mapStateToProps = (state) => {
-	console.log(state,'state');
   return {
     //user: state.userData.login,
   };

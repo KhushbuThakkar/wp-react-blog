@@ -21,16 +21,14 @@ class Post extends React.Component {
         let post=posts[Object.keys(posts).find((post, i) => {
             return posts[post].slug === post_slug;
         })] || {};
-        console.log(post,'post');
 	    let date=new Date(post.date_gmt).toGMTString();
 
         return (
 
 	
 
-	 <div className='hfeed site'>
+	 <div className='main-container hfeed site'>
 
-		 <Slider/>
         <div className="page-wrap">
             <div className="container content-wrapper">
                 <div className="row">   
@@ -49,7 +47,7 @@ class Post extends React.Component {
                                 </h2>
                             
                                 <div className="meta-post">
-                                    <span className="posted-on">Posted on  
+                                    <span className="posted-on">Posted on &nbap;
                                         <a href="" rel="bookmark">
                                             <time className="entry-date published updated">
                                                 {date}
@@ -90,7 +88,6 @@ class Post extends React.Component {
 
 }
 const mapStateToProps = (state) => {
-    console.log(state,'state');
   return {
     posts: state.posts.allPosts
   };

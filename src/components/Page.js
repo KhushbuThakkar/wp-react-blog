@@ -10,10 +10,6 @@ class Page extends React.Component {
 
     render() {
         var me=this;
-        
-        
-        
-        console.log(me.props.params,'spec');
         //let page = DataStore.getPageBySlug(page_slug);
         let pages = (this.props.pages)?this.props.pages:[];
         const page_slug  = me.props.params.page
@@ -21,7 +17,7 @@ class Page extends React.Component {
             return pages[page].slug === page_slug;
         })] || {};
         return (
-            <div>
+            <div className='main-container'>
                 <h1>{(page.title)?page.title.rendered:''}</h1>
                 <div dangerouslySetInnerHTML={{__html: (page.content)?page.content.rendered:''}}></div>
             </div>
@@ -32,7 +28,6 @@ class Page extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state,'state');
   return {
     pages: state.pages.allPages
   };

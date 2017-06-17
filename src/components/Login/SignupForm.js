@@ -77,7 +77,6 @@ class SignupForm extends Component {
   onSubmit(e) {
     e.preventDefault();
     let { email, password ,userName,displayName} = this.state;
-    console.log('submit',userName,displayName);
     this.props.signup(email,password ,userName ,displayName);
     this.setState({
 
@@ -86,7 +85,6 @@ class SignupForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state,'state error')
   return {
     isSignupPending: state.signup.isSignupPending,
     isSignupSuccess: state.signup.isSignupSuccess,

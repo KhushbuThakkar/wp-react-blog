@@ -22,11 +22,9 @@ import {getPagesForRoutes }  from './reducers/Pages.js';
 class AppInitializer {
 
     buildRoutes(data) {
-      console.log('data from build routes',data);
         return data.map((page, i) => {
-
-            console.log(page.slug)
             const component = views[page.slug];
+            //dynamic page routes to create routes for all pages.
             return (
                 <Route
                     getComponent={(nextState, cb) => {
@@ -44,13 +42,13 @@ class AppInitializer {
     run() {
             let me=this;
             getPagesForRoutes().then(function(response){
-                // access results here by chaining to the returned promise
+                // access pages here by chaining to the returned promise
                    render(
                 <Router history={browserHistory}>
                     <Route path="/" component={ App } >
-                        <IndexRoute component={ Home } />
+                        <IndexRoute component={ Bloglist } />
                          <Route path='/profile' name='profile' component={Account} />
-                         <Route path='/blogs' name='blogs' component={Bloglist} />
+                         
                          <Route path='/blogs/:post' name='blog' component={Post} />
                           <Route path='/login' name='login' component={Login} />
                          <Route path='/:page' name='page' component={Page} />
@@ -63,25 +61,6 @@ class AppInitializer {
                 , document.getElementById('app')
             );
             });
-        // DataActions.getPages((response)=>{
-        //     render(
-        //         <Router history={browserHistory}>
-        //             <Route path="/" component={ App } >
-        //                 <IndexRoute component={ Home } />
-        //                  <Route path='/profile' name='profile' component={Account} />
-        //                  <Route path='/blogs' name='blogs' component={Bloglist} />
-        //                  <Route path='/blogs/:post' name='blog' component={Post} />
-        //                   <Route path='/login' name='login' component={Login} />
-        //                  <Route path='/:page' name='page' component={Page} />
-
-        //                 {this.buildRoutes(response)}
-        //             </Route>
-        //             <Redirect from="*" to="/" />
-        //         </Router>
-
-        //         , document.getElementById('app')
-        //     );
-        // });
     }
 }
 

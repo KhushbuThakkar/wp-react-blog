@@ -5,7 +5,6 @@ class Contact extends React.Component {
 
     render() {
         let page = DataStore.getPageBySlug('contact');
-        console.log(page,'page');
         return (
             <div>
                 <h1>{page.title.rendered}</h1>

@@ -4,6 +4,7 @@ import RecentPosts from './RecentPosts';
 import { connect } from 'react-redux';
 import * as postsActions from '../reducers/Posts';
 import { bindActionCreators } from 'redux'
+import Slider from './Slider';
 
 class Bloglist extends React.Component {
 
@@ -15,10 +16,10 @@ class Bloglist extends React.Component {
     render() {
         //let allPosts = DataStore.getAllPosts();
         let allPosts = (this.props.posts)?this.props.posts:[];
-        //console.log(this.props.posts,'allPosts');
         return (
     <div className='hfeed site'>
-        <div className="page-wrap">
+            <Slider/>
+        <div className="main-container page-wrap">
             <div className="container content-wrapper">
                 <div className="row">   
 
@@ -89,7 +90,6 @@ class Bloglist extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state,'state');
   return {
     posts: state.posts.allPosts
   };

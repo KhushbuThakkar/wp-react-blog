@@ -14,18 +14,17 @@ export function signup(email,password,username,displayName) {
 	        }).then((json) => {
 	        	//console.log(json)
 	            if (json.status=="ok") {
-	              console.log(json.nonce,'nonce');
 	              fetch(Globals.WP_URL + `api/user/register/?controller=user&method=register&username=${username}&email=${email}&nonce=${json.nonce}&display_name=${displayName}&user_pass=${password}&insecure=cool`, {
-						method: 'GET',
-			        }).then(signupResponse => {
-			            return signupResponse.json();
-			        }).then((signupJson) => {
+    						       method: 'GET',
+			          }).then(signupResponse => {
+			                 return signupResponse.json();
+			          }).then((signupJson) => {
 			        	if(!signupJson.error)
-		        			dispatch(setSignupSuccess(username,password,signupJson));
+		        			     dispatch(setSignupSuccess(username,password,signupJson));
 		        		else
-		        			dispatch(setSignupError(signupJson.error));
+		        			     dispatch(setSignupError(signupJson.error));
 			        })
-			   }
+			       }
 
 	        })
 	        .catch(err => {
@@ -76,7 +75,6 @@ export default function reducer(state = {
       });
 
     case types.SET_SIGNUP_SUCCESS:
-    		console.log('SET_SIGNUP_SUCCESS called');
       return Object.assign({}, state, {
         isSignupSuccess: action.isSignupSuccess,
         userData:{email:action.username,password:action.password},

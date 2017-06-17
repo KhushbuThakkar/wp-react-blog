@@ -6,7 +6,7 @@ class Account extends React.Component {
     render() {
     	let {profile}=this.props;
         return (
-            <div className="col-md-12 text-center">
+            <div className="col-md-12 text-center main-container">
                 <img className="img img-circle	" src={(profile.avatar_urls)?Object.values(profile.avatar_urls)[2]:''}></img>
                 <h1>{(profile.name)?profile.name:'loading..'}</h1>
             </div>

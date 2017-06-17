@@ -4,7 +4,7 @@
 
 It will provide dynamic menu,any new page created in wordpress will be added in site header.
 
-![](wp-react-blog.png)
+![](wp-react-blog-gif.gif)
 
 ## Features
 

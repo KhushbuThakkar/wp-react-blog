@@ -1,5 +1,4 @@
 import React        from 'react';
-import DataStore    from './../stores/DataStore.js';
 import { connect } from 'react-redux';
 
 class Account extends React.Component {

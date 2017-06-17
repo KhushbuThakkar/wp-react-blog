@@ -1,5 +1,4 @@
 import React        from 'react';
-import DataStore 	from './../stores/DataStore.js';
 
 class Slider extends React.Component {
 

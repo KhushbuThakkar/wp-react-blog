@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import _        from 'lodash';
 
 import { connect } from 'react-redux';
-import DataStore from './../stores/DataStore.js';
 import * as authActions  from '../reducers/Login';
 import { bindActionCreators } from 'redux'
+import * as pagesActions from '../reducers/Pages';
 
 class NavHeader extends React.Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class NavHeader extends React.Component {
         this.state = {
           user_email: localStorage.getItem('user_email'),
         }
+        this.props.pagesActions.getPages();
     }
     logout() {
         this.props.authActions.logout();
@@ -37,7 +38,7 @@ class NavHeader extends React.Component {
         }
     }
     render() {
-        let allPages = DataStore.getAllPages();
+        let allPages = (this.props.pages)?this.props.pages:[];
         allPages = _.sortBy(allPages, [function(page) { return page.menu_order; }]);
         // var WPAPI = require( 'wpapi' );
         // var wp = new WPAPI({ endpoint: 'http://wpreact.dev/wp-json/' });
@@ -100,14 +101,16 @@ class NavHeader extends React.Component {
 const mapStateToProps = (state) => {
     console.log(state,'user from nav')
   return {
-    user: state.login.userData
+    user: state.login.userData,
+    pages: state.pages.allPages
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     //login: (email, password) => dispatch(login(email, password))
-    authActions: bindActionCreators(authActions, dispatch)
+    authActions: bindActionCreators(authActions, dispatch),
+    pagesActions: bindActionCreators(pagesActions, dispatch)
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NavHeader);

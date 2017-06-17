@@ -7,7 +7,7 @@ export function getPosts() {
   return dispatch => {
     dispatch(setPostsPending(true));
      var wp = new WPAPI({
-        endpoint: 'http://wpreact.dev/wp-json/',
+        endpoint: Globals.WP_API_URL,
     });
 
     wp.posts().then(function( response ) {

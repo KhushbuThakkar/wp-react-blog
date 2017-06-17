@@ -1,5 +1,4 @@
 import React        from 'react';
-import DataStore 	from './../stores/DataStore.js';
 import { Link } from 'react-router';
 
 class RecentPosts extends React.Component {

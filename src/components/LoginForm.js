@@ -9,7 +9,10 @@ class LoginForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email:'',
+      password:''
+    };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -62,7 +65,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //login: (email, password) => dispatch(login(email, password))
     authActions: bindActionCreators(authActions, dispatch)
   };
 }
